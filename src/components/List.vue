@@ -1,43 +1,61 @@
 <template>
-  
-    <div
-      class="note-list w-75 d-flex mb-4 align-items-center justify-content-between border-bottom border-3"
-      :class="{'d-none':active}"
-    >
-      <div class="icon-list me-1">
-        <ul class="nav item-icon">
-          <li class="nav-item">
-            <a href="" class="nav-link p-2">
-              <i class="bi bi-pencil-square"></i
-            ></a>
-          </li>
-          <li class="nav-item">
-            <a href="" class=" nav-link p-2"><i class="bi bi-bookmark"></i></a>
-          </li>
-          <li class="nav-item">
-            <a href="" class=" nav-link p-2"><i class="bi bi-check-circle"></i></a>
-          </li>
-        </ul>
-      </div>
-      <div class="title me-3 text-light">Vue 已經完成</div>
-      <div
-        class="comment overflow-hidden me-3 text-light"
-        style="width: 36rem;white-space:nowrap;"
-      >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
-        rem nobis veniam porro beatae! Est fugiat, voluptatum pariatur
-        obcaecati, dolorum eius error magni, aperiam repellendus blanditiis
-        perspiciatis eaque consequuntur quaerat.
-      </div>
-      <div class="time text-light">2021/12/20</div>
-    </div>
+  <tr :class="{'d-none':active}" draggable="true"
+   @dragstart="dragstart"
+   
+  >  
+    <td class="ps-5 fs-4"><i class="bi bi-grip-vertical"></i></td>
+    <td class="pe-5 text-start">{{ index+1 }}</td>
+    <td class="text-start">{{ note.title }}</td>
+    <td class="ps-5 text-start">{{ note.comment.substring(0, 10) }}</td>
+    <td class="ps-5 text-start">
+   
+     {{ note.dateTime.substring(0, 10) }}
+    </td>
+    <th scope="row" class="">
+      <ul class="nav item-icon d-flex justify-content-start fs-4">
+        <li class="nav-item">
+          <a href="" @click.prevent="edit" class="nav-link p-2 text-secondary" data-bs-toggle="modal" data-bs-target="#AddEdit">
+            <i class="bi bi-pencil-square"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+          <a href="" @click.prevent="saveReminder" class="nav-link p-2 text-secondary">
+             <i :class="[note.reminder ? 'text-success bi bi-bookmark-fill':'bi bi-bookmark']" ></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="" @click.prevent="saveStatus" class="nav-link p-2 text-secondary">
+            <i class="bi" :class="[note.status ? 'text-warning bi-check-circle-fill':' bi-check-circle']"></i>
+            </a>
+        </li>
+      </ul>
+    </th>
+  </tr>
 
   
 </template>
 <script>
+import { saveNote } from "noteAPI";
 export default {
-  props:{
-    active:Boolean
-  }
-}
+  emits:['editNote'],
+  props: {
+    active: Boolean,
+    note: Object,
+    index:Number
+  },
+  methods: {
+    
+     edit(){
+      this.$emit('editNote',this.note);
+    },
+    saveReminder(){
+      this.note.reminder =  !this.note.reminder;
+      saveNote(this.note)
+    },
+    saveStatus(){
+      this.note.status =  !this.note.status;
+      saveNote(this.note)
+    }
+  },
+};
 </script>

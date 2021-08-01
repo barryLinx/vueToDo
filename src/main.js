@@ -1,6 +1,7 @@
 import './assets/scss/styles.scss'
 import { createApp } from 'vue'
 import App from './App.vue'
+import 'bootstrap/js/dist/modal';
 
 const app = createApp(App);
 //app.use(CKEditor);

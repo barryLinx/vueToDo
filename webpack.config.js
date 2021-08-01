@@ -37,6 +37,7 @@ module.exports = {
     //副檔名省略,可以根據需要自由增減
     modules: [
       //path.resolve('src/scss'), // 相當於 ../scss/
+      path.resolve("src"),
       path.resolve("node_modules"),
     ],
     extensions: [".js", ".vue", ".scss"],
@@ -127,6 +128,7 @@ module.exports = {
     stats: {
       colors: true,
       hash: true,
+      chunks:false
     },
   },
 };
