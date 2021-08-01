@@ -12,23 +12,33 @@
      {{ note.dateTime.substring(0, 10) }}
     </td>
     <th scope="row" class="">
-      <ul class="nav item-icon d-flex justify-content-start fs-4">
-        <li class="nav-item">
-          <a href="" @click.prevent="edit" class="nav-link p-2 text-secondary" data-bs-toggle="modal" data-bs-target="#AddEdit">
+       <div class="dropdown dropend dropdown-icon">
+       <a
+          class=" fs-4 px-1 py-1"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"          
+        >
+          <i class="bi bi-three-dots-vertical text-secondary"></i>
+        </a>
+      <ul class="dropdown-menu dropdown-menu-dark fs-4">
+        <li class="d-inline-block">
+          <a href="" @click.prevent="edit" class="d-inline-block p-2 text-secondary" data-bs-toggle="modal" data-bs-target="#AddEdit">
             <i class="bi bi-pencil-square"></i>
             </a>
         </li>
-        <li class="nav-item">
-          <a href="" @click.prevent="saveReminder" class="nav-link p-2 text-secondary">
+        <li class="d-inline-block">
+          <a href="" @click.prevent="saveReminder" class="d-inline-block p-2 text-secondary">
              <i :class="[note.reminder ? 'text-success bi bi-bookmark-fill':'bi bi-bookmark']" ></i>
           </a>
         </li>
-        <li class="nav-item">
-          <a href="" @click.prevent="saveStatus" class="nav-link p-2 text-secondary">
+        <li class="d-inline-block">
+          <a href="" @click.prevent="saveStatus" class="d-inline-block p-2 text-secondary">
             <i class="bi" :class="[note.status ? 'text-warning bi-check-circle-fill':' bi-check-circle']"></i>
             </a>
         </li>
       </ul>
+       </div>
     </th>
   </tr>
 
