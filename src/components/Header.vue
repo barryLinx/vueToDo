@@ -4,6 +4,7 @@
         <h1 class="text-center text-light">Vue todo Note</h1>
       <nav class="d-flex justify-content-center mt-5">      
         <ul class=" d-flex">
+          <!-- change checkbox  -->
           <li class="nav-item me-5">
             <button type="button" @click="this.$emit('select','')" class="btn btn-outline-primary position-relative">
                 Notes
@@ -19,7 +20,7 @@
             <button type="button" @click="this.$emit('select','progress')" class="btn btn-success position-relative">
                 In progress
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                   {{this.notes.filter(n=> n.reminder == true ).length == 0 
+                   {{this.notes.filter(n=> n.reminder == true && n.status == false ).length == 0 
                      ? ''
                      : this.notes.filter(n=> n.reminder == true && n.status == false).length }}                
                </span>
@@ -30,7 +31,7 @@
                 Completed
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                    {{this.notes.filter(n=> n.status == true).length == 0 
-                    ?''
+                    ? ''
                     : this.notes.filter(n=> n.status == true).length 
                    }}                
                </span>

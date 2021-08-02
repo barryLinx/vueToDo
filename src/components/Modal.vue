@@ -72,7 +72,7 @@
 <script>
 import { saveNote } from "noteAPI";
 export default {
-  emits: ["update"],
+  emits: ["updateView"],
   props: {
     edit: Object,
   },
@@ -106,7 +106,7 @@ export default {
         return;
       }
       saveNote(this.Note);
-      this.$emit("update");
+      this.$emit("updateView");
       this.deleteNote(this.Note)
     },
     deleteNote(obj) {

@@ -1,10 +1,10 @@
 <template>
   <div
     draggable="true"
+    :ref="'card'+index"
     @dragstart="dragStartEvent(note.id, $event)"
-    @dragover="dragOverEvent"
-    @dragenter="dragEnterEvent"
-    @dragleave="dragLeaveEvent"
+    @dragover="dragOverEvent(index,$event)"
+    
     class="
       card
       text-white
@@ -30,14 +30,14 @@
       </h2>
    <!-- data-bs-offset="-125,2"  -->
       <div class="dropdown dropdown-icon">
-        <button
-          class="btn btn-secondary fs-4 px-1 py-1"
+        <a
+          class="fs-4 px-1 py-1"
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"          
         >
-          <i class="bi bi-three-dots-vertical"></i>
-        </button>
+          <i class="bi bi-three-dots-vertical text-light"></i>
+        </a>
         <ul class="dropdown-menu dropdown-menu-dark ">
           <li class="d-inline-block">
             <a
@@ -120,18 +120,22 @@ export default {
   props: {
     active: Boolean,
     note: Object,
+    index:Number
   },
 
   methods: {
-    dragStartEvent(id, event) {
-      console.log(event);
+    
+    dragStartEvent(id, evt) {
+       evt.dataTransfer.setData("text",id);
+        console.log("drag",evt);
+      // evt.dataTransfer.setData("noteId",id);
+      console.log("Start");
     },
     dragOverEvent() {
       console.log("over");
+      this.$refs['card'+this.index]
     },
-    dragLeaveEvent() {
-      console.log("Leave");
-    },
+   
 
     edit() {
       this.$emit("editNote", this.note);

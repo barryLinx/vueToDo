@@ -8,17 +8,17 @@ body{
   position: relative;
 }
 
-.card-icon{
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #ced4da;
-  font-size: 24px; 
-  visibility:hidden;  
-  width: 0px; 
-  z-index: 150; 
-}
+// .card-icon{
+//   position: absolute;
+//   right: 0;
+//   top: 50%;
+//   transform: translateY(-50%);
+//   background-color: #ced4da;
+//   font-size: 24px; 
+//   visibility:hidden;  
+//   width: 0px; 
+//   z-index: 150; 
+// }
 .dropdown-icon{
   z-index: 150;
 }
@@ -38,9 +38,13 @@ body{
 } */
 .nav-link{
   cursor: pointer;
-
 }
 
+
+.drop__hover {
+  transform: scale(1);
+  border: 2px dashed red;
+}
 //  .item-icon:hover i{
 //   border-radius: 50%;
 //   color: black;

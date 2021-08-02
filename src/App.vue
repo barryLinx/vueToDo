@@ -3,24 +3,31 @@
   <div class="container position-relative">
     <div class="row justify-content-center">
       <Card
-        v-for="item in classFilter"
+        v-for="(item,index) in classFilter"
         :key="item.renderId"
+        :index="index"
         :note="item"
         :active="defaultActive"
-        @update="getNotes"
+       
         @editNote="updateNote"
       />
+      <h2 v-if="!classFilter.length">No Notes</h2>
     </div>
    
     <div class="d-flex flex-column justify-content-between align-items-center ">
     <table class="table-Note text-light" :class="{'d-none':defaultActive}">
       <thead>
-        <tr>          
+        <tr v-if="classFilter.length !== 0">          
            <th scope="col" class="fs-3 pe-5 text-start text-light"></th>
           <th scope="col" class="fs-3 pe-5 text-start text-light">#</th>
           <th scope="col" class="fs-3 text-start text-light">Title</th>
           <th scope="col" class="fs-3 ps-5 text-start text-light">Comment</th>
           <th scope="col" class="fs-3 text-end text-light">DateTime</th>         
+        </tr>
+        <tr v-else>
+          <th>
+            <h2>No Notes</h2>            
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -35,9 +42,9 @@
       </tbody>
     </table>
  </div>
-    <Sidebar @switch="defaultActive = !defaultActive" />
+    <Sidebar @switch="defaultActive = !defaultActive" @updateView="getNotes" />
   </div>
-  <Modal  @update="getNotes"  :edit="editmodal"/>
+  <Modal  @updateView="getNotes"  :edit="editmodal"/>
 </template>
 <script>
 import Header from "./components/Header";

@@ -2,14 +2,14 @@
   <!-- <div class="position-relative">  </div> -->
     <div class=" position-absolute top-50 start-100  translate-middle">
       <ul class="nav flex-column fs-2 ">
-        <li class="nav-item">
-          <a href="#" class=" nav-link" 
+        <li class="nav-item ">
+          <a href="#" class=" nav-link p-5" 
           data-bs-toggle="modal" 
           data-bs-target="#AddEdit">
           <i class="bi bi-plus-lg text-success"></i></a>
         </li>
-        <li class="nav-item">
-          <a href="" class=" nav-link" @click.prevent="layoutSwitch">            
+        <li class="nav-item ">
+          <a href="" class="nav-link p-5" @click.prevent="layoutSwitch">            
            <i class="text-info" :class="[ 
               active 
                ? 'bi bi-grid-1x2-fill'
@@ -17,10 +17,16 @@
                ></i> 
             </a>
         </li>
-        <li class="nav-item" @drop.prevent="drop_delete">
-          <span  class=" nav-link text-danger"> 
+        <li class="nav-item">
+          <span 
+           class="text-danger p-5"
+          ref="drop-trash"  
+          @drop.prevent="drop_delete" 
+          @dragover.prevent="allowDrop"
+          @dragleave.prevent="leaveDrop"
+           > 
             <i class="bi bi-trash-fill"></i>
-            </span>
+          </span>
         </li>
       </ul>
     </div>
@@ -33,7 +39,8 @@
 import { deleteNote }  from 'noteAPI.js'
 export default {
   emits:[
-    'switch'
+    'switch',
+    'updateView'
   ],
   data() {
     return {
@@ -46,11 +53,22 @@ export default {
       this.$emit('switch',this.active)
     },
     drop_delete(evt){
-        evt.target.style.background = "red";
-      console.log("id",id);
-       console.log("drop");
-      //deleteNote()
+      
+       const id = evt.dataTransfer.getData("text");
+       console.log("drop id",Number(id))
+       deleteNote(Number(id));
+       
+      this.$emit('updateView')
+      this.$refs["drop-trash"].classList.remove('drop__hover');
+    },
+    allowDrop(){
+      this.$refs["drop-trash"].classList.add('drop__hover');
+    },
+    leaveDrop(){
+       this.$refs["drop-trash"].classList.remove('drop__hover');
     }
+   
+
   },
 
 };

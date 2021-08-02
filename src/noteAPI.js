@@ -34,7 +34,7 @@
  function deleteNote(id) {
     const notes = getAllNotes();
     const newNotes = notes.filter(n => n.id != id);
-    localStorage.setItem("AllNotes-notes",JSON.stringify(newNotes));
+    localStorage.setItem("AllNotes",JSON.stringify(newNotes));
   }
 
   export {getAllNotes,saveNote,deleteNote}
