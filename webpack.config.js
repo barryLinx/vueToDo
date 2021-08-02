@@ -124,7 +124,6 @@ module.exports = {
     contentBase: path.join(__dirname, "dist"),
     port: 6890,
     open: true,
-
     stats: {
       colors: true,
       hash: true,

@@ -1,5 +1,5 @@
 <template>
-  <tr :class="{'d-none':active}" draggable="true"
+  <tr class="grab" :class="{'d-none':active}" draggable="true"
    @dragstart="dragstart"
    
   >  
@@ -11,15 +11,15 @@
    
      {{ note.dateTime.substring(0, 10) }}
     </td>
-    <th scope="row" class="">
+    <th scope="row" class=" ">
        <div class="dropdown dropend dropdown-icon">
        <a
-          class=" fs-4 px-1 py-1"
+          class=" fs-4 px-1 py-1  text-secondary"
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"          
         >
-          <i class="bi bi-three-dots-vertical text-secondary"></i>
+          <i class="bi bi-three-dots-vertical"></i>
         </a>
       <ul class="dropdown-menu dropdown-menu-dark fs-4">
         <li class="d-inline-block">
