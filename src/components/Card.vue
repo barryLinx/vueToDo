@@ -5,8 +5,7 @@
     @dragstart="dragStartEvent(note.id, $event)"
 
     
-    class="
-    
+    class="    
       card
       text-white
       bg-secondary
@@ -28,14 +27,14 @@
       <h2 class="overflow-hidden ps-0 pe-3 me-auto grab w-100" style="white-space: nowrap">
         <i class="bi bi-grip-vertical "></i>
         {{ note.title }}
-      </h2>
+      </h2> 
    <!-- data-bs-offset="-125,2"  -->
       <div class="dropdown dropdown-icon">
         <a
-          class="fs-4 px-1 py-1"
+          href="#"
+          class="fs-4 "
           type="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"          
+          data-bs-toggle="dropdown"                
         >
           <i class="bi bi-three-dots-vertical text-light"></i>
         </a>
