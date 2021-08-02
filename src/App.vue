@@ -1,6 +1,6 @@
 <template>
-  <Header :notes="AllNotes" @select="navSelecded" />
-  <div class="container position-relative">
+  <Header :notes="AllNotes" @select="navSelecded" @switch="defaultActive = !defaultActive" />
+  <div class="container position-relative ">
     <div class="row justify-content-center">
       <Card
         v-for="(item,index) in classFilter"
@@ -10,8 +10,7 @@
         :active="defaultActive"
        
         @editNote="updateNote"
-      />
-      <h2 v-if="!classFilter.length">No Notes</h2>
+      />      
     </div>
    
     <div class="d-flex flex-column justify-content-between align-items-center ">
@@ -42,7 +41,7 @@
       </tbody>
     </table>
  </div>
-    <Sidebar @switch="defaultActive = !defaultActive" @updateView="getNotes" />
+    <Sidebar  @updateView="getNotes" />
   </div>
   <Modal  @updateView="getNotes"  :edit="editmodal"/>
 </template>

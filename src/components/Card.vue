@@ -6,6 +6,7 @@
     @dragover="dragOverEvent(index,$event)"
     
     class="
+    
       card
       text-white
       bg-secondary
@@ -24,8 +25,8 @@
     style="max-width: 18rem"
   >
     <div class=" card-header px-0 py-2 d-flex">
-      <h2 class="overflow-hidden ps-0 pe-3 me-auto" style="white-space: nowrap">
-        <i class="bi bi-grip-vertical"></i>
+      <h2 class="overflow-hidden ps-0 pe-3 me-auto grab w-100" style="white-space: nowrap">
+        <i class="bi bi-grip-vertical "></i>
         {{ note.title }}
       </h2>
    <!-- data-bs-offset="-125,2"  -->
@@ -89,8 +90,8 @@
       <p class="card-text overflow-hidden" style="white-space: nowrap">
         {{ note.comment }}
       </p>
-      <div class="d-flex">
-        <span class="text-must me-auto">
+      <div class="d-flex justify-content-end">
+        <!-- <span class="text-must me-auto">
           <a
             href=""
             class="text-info"
@@ -99,7 +100,7 @@
           >
             more...</a
           >
-        </span>
+        </span> -->
 
         <span class="text-must">{{ note.dateTime.substring(0, 10) }}</span>
       </div>

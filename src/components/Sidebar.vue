@@ -1,25 +1,8 @@
 <template>
-  <!-- <div class="position-relative">  </div> -->
-    <div class=" position-absolute top-50 start-100  translate-middle">
-      <ul class="nav flex-column fs-2 ">
-        <li class="nav-item ">
-          <a href="#" class=" nav-link p-5" 
-          data-bs-toggle="modal" 
-          data-bs-target="#AddEdit">
-          <i class="bi bi-plus-lg text-success"></i></a>
-        </li>
-        <li class="nav-item ">
-          <a href="" class="nav-link p-5" @click.prevent="layoutSwitch">            
-           <i class="text-info" :class="[ 
-              active 
-               ? 'bi bi-grid-1x2-fill'
-               :'bi bi-list-task' ]"
-               ></i> 
-            </a>
-        </li>
-        <li class="nav-item">
-          <span 
-           class="text-danger p-5"
+  <!-- <div class="position-relative  position-absolute top-50 start-100  translate-middle">  </div> -->
+    <div class="position-fixed" style="right:35px;bottom:60px">
+      <span 
+           class="text-danger p-5 fs-2"
           ref="drop-trash"  
           @drop.prevent="drop_delete" 
           @dragover.prevent="allowDrop"
@@ -27,8 +10,6 @@
            > 
             <i class="bi bi-trash-fill"></i>
           </span>
-        </li>
-      </ul>
     </div>
 
 </template>
@@ -44,16 +25,11 @@ export default {
   ],
   data() {
     return {
-      active:true
+      //active:true
     }
   },
   methods: {
-    layoutSwitch(){
-      this.active = !this.active;
-      this.$emit('switch',this.active)
-    },
-    drop_delete(evt){
-      
+    drop_delete(evt){      
        const id = evt.dataTransfer.getData("text");
        console.log("drop id",Number(id))
        deleteNote(Number(id));
@@ -66,8 +42,7 @@ export default {
     },
     leaveDrop(){
        this.$refs["drop-trash"].classList.remove('drop__hover');
-    }
-   
+    }  
 
   },
 
