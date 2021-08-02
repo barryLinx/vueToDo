@@ -1,7 +1,6 @@
 <template>
-  <tr class="grab" :class="{'d-none':active}" draggable="true"
-   @dragstart="dragstart"
-   
+  <tr  class="grab" :class="{'d-none':active}" draggable="true"
+   @dragstart="dragStartEvent(note.id,$event)"
   >  
     <td class="ps-5 fs-4"><i class="bi bi-grip-vertical"></i></td>
     <td class="pe-5 text-start">{{ index+1 }}</td>
@@ -54,6 +53,16 @@ export default {
     index:Number
   },
   methods: {
+     dragStartEvent(id, evt) {
+       evt.dataTransfer.setData("text",id);
+        // console.log("drag",evt);
+      // evt.dataTransfer.setData("noteId",id);
+     // console.log("Start");
+    },
+    // dragOverEvent() {
+    //   console.log("over");
+    //   this.$refs['card'+this.index]
+    // },
     
      edit(){
       this.$emit('editNote',this.note);

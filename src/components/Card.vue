@@ -3,7 +3,7 @@
     draggable="true"
     :ref="'card'+index"
     @dragstart="dragStartEvent(note.id, $event)"
-    @dragover="dragOverEvent(index,$event)"
+
     
     class="
     
@@ -132,10 +132,10 @@ export default {
       // evt.dataTransfer.setData("noteId",id);
       console.log("Start");
     },
-    dragOverEvent() {
-      console.log("over");
-      this.$refs['card'+this.index]
-    },
+    // dragOverEvent() {
+    //   console.log("over");
+    //   this.$refs['card'+this.index]
+    // },
    
 
     edit() {
