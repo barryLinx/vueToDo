@@ -1,6 +1,6 @@
 <template>
   <Header :notes="AllNotes" @select="navSelecded" @switch="defaultActive = !defaultActive" />
-  <div class="container position-relative ">
+  <div class="container position-relative mt-5">
     <div class="row justify-content-center">
       <Card
         v-for="(item,index) in classFilter"
